@@ -8,20 +8,13 @@
  */
 
 const chunk = (array, size) => {
-  let curChunk = [];
   const outputArr = [];
-  array.forEach((item, index) => {
-    if (curChunk.length === size) {
-      outputArr.push(curChunk);
-      curChunk = [item];
-      if (index === array.length - 1) outputArr.push(curChunk);
-    } else {
-      curChunk.push(item);
-    }
-  });
+  for (let i = 0; i < array.length; i += size) {
+    outputArr.push(array.slice(i, i + size));
+  }
   return outputArr;
 };
 
-const data = [1, 2, 3, 4, 5];
+const data = [1, 2, 3, 4, 5, 6, 7];
 console.log(chunk(data, 2)); // [[1, 2], [3, 4], [5, 6], [7]]
 console.log(chunk(data, 3)); // [[1, 2, 3], [4, 5, 6], [7]]
